@@ -9,4 +9,5 @@ module.exports = app => {
   app.get('/app/api/article/:id', app.controller.app.app.detail);
   app.get('/app(/.+)?', app.controller.app.app.index);
   app.get('/test', app.controller.test.test.index);
+  app.get('/login', app.controller.login.login.index);
 };
