@@ -1,31 +1,51 @@
 <template lang="html">
-    <layout>
+    <base-layout
+        title="登录"
+    >
         <div class="login-container">
-            Hello Eggjs-Vue! {{message}}
-            <el-button @click="visible = true">按钮</el-button>
-            <el-dialog v-model="visible" title="Hello world">
-              <p>欢迎使用 Element</p>
-            </el-dialog>
-            <el-button>默认按钮</el-button>
-            <el-button type="primary">主要按钮</el-button>
-            <el-button type="text">文字按钮</el-button>
+            <div class="login-deck">
+                <transition name="el-fade-in-linear">
+                    <component
+                        :is="currentComponent"
+                        @clickEvent="clickEvent"
+                    ></component>
+                </transition>
+            </div>
         </div>
-    </layout>
+    </base-layout>
 </template>
 
 <script>
+import Login from './components/login';
+import Register from './components/register';
 export default {
+    data() {
+        return {
+            currentComponent: 'Register'
+        }
+    },
+    components: {
+        Login,
+        Register
+    },
+    methods: {
+        clickEvent(value) {
+            switch (value) {
+                case 0:
+                    this.currentComponent = 'Login'
+                    break;
+                case 1:
+                    this.currentComponent = 'Register'
+                    break;
+                default:
+
+            }
+        }
+    },
+    mounted() {}
 }
 </script>
 
 <style lang="less">
-@font_col: #333;
-.login-container {
-    color: @font_col;
-}
-</style>
-<style lang="css">
-.login-container {
-    font-size: 40px;
-}
+@import './login.less';
 </style>

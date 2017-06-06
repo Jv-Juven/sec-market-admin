@@ -1,6 +1,6 @@
 /* global isBrowser */
 export default {
-  name: 'Layout',
+  name: 'BaseLayout',
   props: [ 'title', 'description', 'keywords' ],
   components: {},
   computed: {
@@ -17,7 +17,7 @@ export default {
       return this.$root.baseClass;
     }
   },
-  template: isBrowser ? '<div id="app"><slot></slot></div>' : `<!DOCTYPE html>
+  template: typeof window === 'window' ? '<div id="app"><slot></slot></div>' : `<!DOCTYPE html>
                 <html lang="en">
                   <head>
                     <title>{{vTitle}}</title>
