@@ -7,8 +7,8 @@
         <el-input class="form-input" placeholder="密码"></el-input>
         <div class="operations">
             <el-button type="primary">注册</el-button>
-            <el-button @click="loginFn">登录</el-button>
-            <el-button type="text">已有账号？登录</el-button>
+            <!-- <el-button>登录</el-button> -->
+            <el-button @click="loginFn" type="text">已有账号？登录</el-button>
         </div>
     </section>
 </template>

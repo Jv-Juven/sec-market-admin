@@ -8,7 +8,7 @@
         <div class="operations">
             <el-button type="primary">登录</el-button>
             <el-button @click="registerFn">注册</el-button>
-            <el-button type="text">忘记密码</el-button>
+            <!-- <el-button type="text">忘记密码</el-button> -->
         </div>
     </section>
 </template>

@@ -4,12 +4,10 @@
     >
         <div class="login-container">
             <div class="login-deck">
-                <transition name="el-fade-in-linear">
-                    <component
-                        :is="currentComponent"
-                        @clickEvent="clickEvent"
-                    ></component>
-                </transition>
+                <component
+                    :is="currentComponent"
+                    @clickEvent="clickEvent"
+                ></component>
             </div>
         </div>
     </base-layout>
