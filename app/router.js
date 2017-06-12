@@ -11,4 +11,5 @@ module.exports = app => {
   app.get('/test', app.controller.test.test.index);
   app.get('/login', app.controller.login.login.index);
   app.get('/list', app.controller.list.list.index);
+  app.get('/goodDetails', app.controller.goodDetails.goodDetails.index);
 };
