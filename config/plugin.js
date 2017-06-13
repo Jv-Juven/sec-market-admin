@@ -24,3 +24,8 @@ exports.logview = {
   package: 'egg-logview',
   env: [ 'local' ]
 };
+
+exports.mongoose = {
+  enable: true,
+  package: 'egg-mongoose',
+};
