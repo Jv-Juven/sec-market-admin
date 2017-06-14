@@ -4,7 +4,7 @@
             注 册
         </h4>
         <el-input class="form-input" placeholder="账号" v-model="userName"></el-input>
-        <el-input class="form-input" placeholder="密码" v-model="password"></el-input>
+        <el-input class="form-input" placeholder="密码" v-model="password" type="password"></el-input>
         <div class="operations">
             <el-button type="primary" @click="registerFn">注册</el-button>
             <!-- <el-button>登录</el-button> -->
@@ -15,6 +15,7 @@
 
 <script>
 import axios from 'axios';
+const host = 'http://127.0.0.1:7003';
 export default {
     data() {
         return {
@@ -30,7 +31,7 @@ export default {
         // 注册按钮事件
         registerFn() {
             let vm = this;
-            axios.post('/login/api/register', {
+            axios.post(`${host}/login/api/register`, {
                 userName: vm.userName,
                 password: vm.password
             })
