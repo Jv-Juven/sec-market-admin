@@ -12,4 +12,5 @@ module.exports = app => {
     app.post('/login/api/register', app.controller.login.login.register);
     app.get('/list', app.controller.list.list.index);
     app.get('/goodDetails', app.controller.goodDetails.goodDetails.index);
+    app.post('/app/api/issue/index', app.controller.frontEnd.issue.index);
 };
