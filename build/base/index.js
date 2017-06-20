@@ -11,6 +11,7 @@ exports.getOption = config => {
       alias: {
         asset: path.join(config.baseDir, 'app/web/asset'),
         app: path.join(config.baseDir, 'app/web/framework/vue/app'),
+        api: path.join(config.baseDir, 'app/web/framework/api'),
         component: path.join(config.baseDir, 'app/web/component'),
         framework: path.join(config.baseDir, 'app/web/framework'),
         store: path.join(config.baseDir, 'app/web/store')
@@ -18,4 +19,3 @@ exports.getOption = config => {
     }
   };
 };
-

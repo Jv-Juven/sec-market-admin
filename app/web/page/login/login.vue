@@ -1,12 +1,13 @@
 <template lang="html">
     <base-layout
-        title="登录"
+        :title="title"
     >
         <div class="login-container">
             <div class="login-deck">
                 <component
                     :is="currentComponent"
                     @clickEvent="clickEvent"
+                    @initTitle="setTitle"
                 ></component>
             </div>
         </div>
@@ -19,7 +20,8 @@ import Register from './components/register';
 export default {
     data() {
         return {
-            currentComponent: 'Register'
+            currentComponent: 'Register',
+            title: '登录' // 页面title
         }
     },
     components: {
@@ -38,6 +40,9 @@ export default {
                 default:
 
             }
+        },
+        setTitle(value) {
+            this.title = value || '登录';
         }
     },
     mounted() {}

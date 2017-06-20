@@ -1,3 +1,4 @@
+
 exports.index = function* (ctx) {
     // yield ctx.model.User.create({
     //     userName: '李承晚',
@@ -16,9 +17,21 @@ exports.register = function* (ctx) {
         userName,
         password
     });
-    ctx.body = {
-        msgCode: 100,
-        message: '插入成功',
-        result: result
-    };
+    if (result._id) {
+        ctx.session.user = {
+            _id: result._id,
+            userName: result.userName
+        }
+        ctx.body = {
+            msgCode: 100,
+            message: '插入成功',
+            result: null
+        };
+    } else {
+        ctx.body = {
+            msgCode: 600,
+            message: '插入失败',
+            result: null
+        };
+    }
 }

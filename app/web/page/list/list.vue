@@ -1,5 +1,6 @@
 <template lang="html">
 <base-layout title="管理列表">
+{{userName}}
     <el-table
         :data="tableData"
         border
@@ -98,7 +99,8 @@ export default {
                 address: '广东省广州市海珠区新滘西路299号'
             }]
         }
-    }
+    },
+    computed: {}
 }
 </script>
 
