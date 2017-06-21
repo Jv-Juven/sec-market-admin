@@ -43,9 +43,9 @@ export default {
             this.requesting = true;
             let vm = this;
             api.post(`/login/api/register`, {
-                    userName: vm.userName,
-                    password: vm.password
-                })
+                userName: vm.userName,
+                password: vm.password
+            })
                 .then((res) => {
                     vm.fullscreenLoading = false;
                     let response = res.data;
@@ -58,7 +58,7 @@ export default {
                             }
                         });
                     } else {
-                        return Promise.reject({ message: '返回的数据错误' });
+                        return Promise.reject(response);
                     }
                 })
                 .catch((reason) => {

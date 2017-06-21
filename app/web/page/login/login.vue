@@ -20,7 +20,7 @@ import Register from './components/register';
 export default {
     data() {
         return {
-            currentComponent: 'Register',
+            currentComponent: 'login',
             title: '登录' // 页面title
         }
     },
