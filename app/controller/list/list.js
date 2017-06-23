@@ -21,7 +21,7 @@ exports.index = async function(ctx) {
     let result = await Good.find({}, '_id createdAt goodsName status');
     let user = ctx.session.user || {};
     await ctx.page('list/list.js', {
-        userName: '游客',
+        userName: user.userName || '游客',
         goodsList: result
     });
 }

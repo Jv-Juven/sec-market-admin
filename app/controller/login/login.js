@@ -1,8 +1,4 @@
 exports.index = function*(ctx) {
-    // yield ctx.model.User.create({
-    //     userName: '李承晚',
-    //     password: '123456'
-    // });
     yield this.render('login/login.js', {
         message: '登录页面'
     });
@@ -10,6 +6,21 @@ exports.index = function*(ctx) {
 
 exports.postRegister = async function(ctx) {
     let { userName, password } = ctx.request.body;
+
+    let validator = ctx.validator();
+    validator.emit(userName, 'min:6|max:20', '用户名应为6到20个字符');
+    validator.emit(password, 'min:6', '密码应为至少6个字符');
+    if (validator.validedMsgs[0]) {
+        ctx.body = {
+            msgCode: 610,
+            message: validator.validedMsgs[0],
+            result: null
+        }
+        return;
+    }
+
+    // let validator = ctx.validator;
+    // validator.emit();
     let userModel = ctx.model.User;
     let exist = await userModel.find({ userName: userName });
     console.log('查询结果', exist);
@@ -46,6 +57,18 @@ exports.postRegister = async function(ctx) {
 }
 exports.postLogin = async function(ctx) {
     let { userName, password } = ctx.request.body;
+
+    let validator = ctx.validator();
+    validator.emit(userName, 'min:6|max:20', '用户名应为6到20个字符');
+    validator.emit(password, 'min:6', '密码应为至少6个字符');
+    if (validator.validedMsgs[0]) {
+        ctx.body = {
+            msgCode: 610,
+            message: validator.validedMsgs[0],
+            result: null
+        }
+        return;
+    }
 
     let userModel = ctx.model.User;
     let exist = await userModel.find({ userName: userName });
