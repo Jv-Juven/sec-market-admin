@@ -1,6 +1,6 @@
 module.exports = app => {
     return class IssueControll extends app.Controller {
-        async index (ctx) {
+        async index(ctx) {
             const Good = ctx.model.Good;
             let result = await Good.create({
                 goodsName: '森田面膜',
@@ -10,7 +10,7 @@ module.exports = app => {
                 contactWay: 2,
                 contactNum: 'Jance312548',
                 phone: '15745422154',
-                sellerRemarks: '广州同城交易',
+                sellerRemarks: '广州同城交易dd',
                 imgs: [
                     'http://trip-pic1.plateno.com/images/temp/index/swiper1.jpg',
                     'http://trip-pic1.plateno.com/images/temp/index/swiper2.jpg',

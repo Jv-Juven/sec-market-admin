@@ -23,7 +23,8 @@ exports.postRegister = async function(ctx) {
     }
     let result = await userModel.create({
         userName,
-        password
+        password,
+        createdAt: Date.now()
     });
     if (result._id) {
         ctx.session.user = {

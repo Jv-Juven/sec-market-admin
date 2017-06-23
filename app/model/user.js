@@ -7,6 +7,9 @@ module.exports = app => {
         password: {
             type: String
         },
+        createdAt: {
+            type: Date,
+        },
         rank: {
             type: Number,
             default: 0

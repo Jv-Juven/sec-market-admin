@@ -1,7 +1,10 @@
-exports.index = function* (ctx) {
+exports.index = async function (ctx) {
+    let params = ctx.params;
     let Good = ctx.model.Good;
-    let result = yield Good.find({}).exec();
-    yield this.render('goodDetails/goodDetails.js', {
+    let result = await Good.find({
+        _id: params.id
+    }).exec();
+    await ctx.page('goodDetails/goodDetails.js', {
         goodsData: result[0]
     });
 }
