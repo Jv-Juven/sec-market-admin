@@ -2,7 +2,7 @@
 <base-layout title="管理列表">
 {{userName}}
     <el-table
-        :data="tableData"
+        :data="goodsList"
         border
         style="width: 100%">
         <el-table-column
@@ -13,22 +13,30 @@
             label="序号"
             width="68">
             <template scope="scope">
-                <span style="margin-left: 10px">{{ scope.$index }}</span>
+                <span
+                    style="margin-left: 10px"
+                >{{ scope.$index }}</span>
             </template>
         </el-table-column>
         <el-table-column
             label="日期"
-            width="180">
+            width="220">
             <template scope="scope">
                 <el-icon name="time"></el-icon>
-                <span style="margin-left: 10px">{{ scope.row.date }}</span>
+                <span
+                    style="margin-left: 10px"
+                >{{ scope.row.createdAt | dateChange}}</span>
             </template>
         </el-table-column>
         <el-table-column
             label="标题"
             width="600">
             <template scope="scope">
-                <el-button style="margin-left: 10px;" type="text">{{ scope.row.goodsName }}</el-button>
+                <el-button
+                    style="margin-left: 10px;"
+                    type="text"
+                    @click="jumpUrl(scope.row._id)"
+                >{{ scope.row.goodsName }}</el-button>
             </template>
         </el-table-column>
         <!-- <el-table-column
@@ -48,7 +56,7 @@
             label="状态"
             width="100">
             <template scope="scope">
-                <label>待审核</label>
+                <label v-if="scope.row.status == 0">待审核</label>
             </template>
         </el-table-column>
         <el-table-column label="操作">
@@ -73,31 +81,42 @@
 export default {
     data() {
         return {
-            tableData: [{
-                date: '2016-05-02',
-                goodsName: '王小虎',
-                address: '广东省广州市海珠区新滘西路299号'
-            }, {
-                date: '2016-05-02',
-                goodsName: '王小虎',
-                address: '广东省广州市海珠区新滘西路299号'
-            }, {
-                date: '2016-05-02',
-                goodsName: '王小虎',
-                address: '广东省广州市海珠区新滘西路299号'
-            }, {
-                date: '2016-05-02',
-                goodsName: '王小虎',
-                address: '广东省广州市海珠区新滘西路299号'
-            }, {
-                date: '2016-05-02',
-                goodsName: '王小虎',
-                address: '广东省广州市海珠区新滘西路299号'
-            }, {
-                date: '2016-05-02',
-                goodsName: '王小虎',
-                address: '广东省广州市海珠区新滘西路299号'
-            }]
+            // tableData: [{
+            //     date: '2016-05-02',
+            //     goodsName: '王小虎',
+            //     address: '广东省广州市海珠区新滘西路299号'
+            // }, {
+            //     date: '2016-05-02',
+            //     goodsName: '王小虎',
+            //     address: '广东省广州市海珠区新滘西路299号'
+            // }, {
+            //     date: '2016-05-02',
+            //     goodsName: '王小虎',
+            //     address: '广东省广州市海珠区新滘西路299号'
+            // }, {
+            //     date: '2016-05-02',
+            //     goodsName: '王小虎',
+            //     address: '广东省广州市海珠区新滘西路299号'
+            // }, {
+            //     date: '2016-05-02',
+            //     goodsName: '王小虎',
+            //     address: '广东省广州市海珠区新滘西路299号'
+            // }, {
+            //     date: '2016-05-02',
+            //     goodsName: '王小虎',
+            //     address: '广东省广州市海珠区新滘西路299号'
+            // }]
+        }
+    },
+    filters: {
+        dateChange(value) {
+            let d = new Date(value);
+            return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()} ${d.getHours()}:${d.getMinutes()}`;
+        }
+    },
+    methods: {
+        jumpUrl(id) {
+            window.location.href = "/goodDetails/" + id;
         }
     },
     computed: {}

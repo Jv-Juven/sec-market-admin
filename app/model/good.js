@@ -14,6 +14,10 @@ module.exports = app => {
             trim: true,
             required: true
         },
+        createdAt: {
+            type: Date,
+            default: Date.now
+        },
         // 物品简介
         intro: {
             type: String,

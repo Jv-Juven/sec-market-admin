@@ -13,6 +13,6 @@ module.exports = app => {
     app.post('/login/api/register', app.controller.login.login.postRegister);
     app.post('/login/api/login', app.controller.login.login.postLogin);
     app.get('/list', app.middlewares.auth(), app.controller.list.list.index);
-    app.get('/goodDetails', app.controller.goodDetails.goodDetails.index);
+    app.get('/goodDetails/:id', app.middlewares.auth(), app.controller.goodDetails.goodDetails.index);
     app.post('/app/api/issue/index', app.controller.frontEnd.issue.index);
 };
