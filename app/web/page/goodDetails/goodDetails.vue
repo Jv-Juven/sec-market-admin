@@ -2,57 +2,82 @@
 <base-layout title="物品详情">
     <div class="goodDetails-wrapper">
         <!-- 物品名 -->
-        <h3>{{goodsData.goodsName}}</h3>
+        <h3 class="goodDetails-title">{{goodsData.goodsName}}</h3>
         <!-- 物品简介 -->
         <p>{{goodsData.intro}}</p>
         <!-- 物品图片 -->
-        <h5>图片：</h5>
-        <div class="">
-            <el-card
+        <h5 class="goodDetails-item">
+            <span class="goodDetails-item-title">图片：</span>
+        </h5>
+        <ul class="goodDetails-imgs-wrapper">
+            <li
+                class="img-box"
                 v-for="(img, key) in imgs"
                 :key="key"
             >
                 <img :src="img" alt="">
-            </el-card>
-        </div>
+            </li>
+        </ul>
         <!-- 价格 -->
-        <div>价格：{{goodsData.price}}</div>
+        <div class="goodDetails-item">
+            <span class="goodDetails-item-title">价格：</span>{{goodsData.price}}
+        </div>
         <!-- 昵称 -->
-        <div>昵称：{{goodsData.nickName}}</div>
+        <div class="goodDetails-item">
+            <span class="goodDetails-item-title">昵称：</span>{{goodsData.nickName}}
+        </div>
         <!-- 联系方式 -->
-        <div>联系方式：{{goodsData.contactWay}}</div>
+        <!-- <div class="goodDetails-item">
+            <span class="goodDetails-item-title">联系方式：</span>
+            <span>QQ</span>
+            <span v-if="goodsData.contactWay == 2">微信</span>
+        </div> -->
         <!-- 联系号码 -->
-        <div>联系号码：{{goodsData.contactNum}}</div>
+        <div class="goodDetails-item">
+            <span
+                class="goodDetails-item-title"
+                v-if="goodsData.contactWay == 1"
+            >QQ：</span>
+            <span
+                class="goodDetails-item-title"
+                v-if="goodsData.contactWay == 2"
+            >Wechat：</span>
+            {{goodsData.contactNum}}
+        </div>
         <!-- 手机号码 -->
-        <div>手机号码：{{goodsData.phone}}</div>
+        <div class="goodDetails-item">
+            <span class="goodDetails-item-title">手机号码：</span>{{goodsData.phone}}
+        </div>
         <!-- 卖家补充 -->
-        <p>卖家补充：{{goodsData.sellerRemarks}}</p>
-    </div>
-    <div class="operations-wrapper">
-        <el-button
+        <p class="goodDetails-item">
+            <span class="goodDetails-item-title">卖家补充：</span>{{goodsData.sellerRemarks}}
+        </p>
+        <div class="operations-wrapper">
+            <el-button
             size="small"
             type="success"
-            @click="handle(this.goodsData, 1)"
+            @click="handle(goodsData, 1)"
             v-show="goodsData.status != 1"
-        >通过</el-button>
-        <el-button
+            >通过</el-button>
+            <el-button
             size="small"
             type="danger"
-            @click="handle(this.goodsData, 2)"
+            @click="handle(goodsData, 2)"
             v-show="goodsData.status == 0"
-        >拒绝</el-button>
-        <el-button
+            >拒绝</el-button>
+            <el-button
             size="small"
             type="danger"
-            @click="handle(this.goodsData, 3)"
+            @click="handle(goodsData, 3)"
             v-show="goodsData.status == 1"
-        >下架</el-button>
-        <el-button
+            >下架</el-button>
+            <el-button
             size="small"
             type="info"
-            @click="handle(this.goodsData, 0)"
+            @click="handle(goodsData, 0)"
             v-show="goodsData.status != 0"
-        >待审</el-button>
+            >待审</el-button>
+        </div>
     </div>
 </base-layout>
 </template>
@@ -97,5 +122,6 @@ export default {
 </script>
 
 <style lang="less">
+@import "../../asset/less/var.less";
 @import "./goodDetails.less";
 </style>

@@ -1,4 +1,5 @@
-/* global isBrowser */
+
+<script>
 export default {
   name: 'BaseLayout',
   props: [ 'title', 'description', 'keywords' ],
@@ -29,10 +30,20 @@ export default {
                     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
                   </head>
                   <body :class="baseClass">
-                  <div id="app">
+                  <div id="app" class="bodyClass">
                    <slot></slot>
                   </div>
                   </body>
                 </html>`
 
 };
+
+</script>
+
+<style lang="less">
+.bodyClass {
+    min-width: 780px;
+    max-width: 1000px;
+    margin: auto;
+}
+</style>

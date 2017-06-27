@@ -2,12 +2,12 @@
 <base-layout title="管理列表">
     <div class="bar-container">
         <el-row>
-            <el-col :span="21">
+            <el-col :span="18">
                 <h5>
                     物品列表
                 </h5>
             </el-col>
-            <el-col :span="3">
+            <el-col :span="6">
                 <h5>您好，<el-button type="text">{{userName}}</el-button> <el-button type="info" @click="logout">登出</el-button></h5>
             </el-col>
         </el-row>
@@ -40,8 +40,7 @@
             </template>
         </el-table-column>
         <el-table-column
-            label="标题"
-            width="600">
+            label="标题">
             <template scope="scope">
                 <el-button
                     style="margin-left: 10px;"
