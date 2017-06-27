@@ -32,23 +32,66 @@
         <el-button
             size="small"
             type="success"
-            @click="handleEdit(scope.$index, scope.row)"
+            @click="handle(this.goodsData, 1)"
+            v-show="goodsData.status != 1"
         >通过</el-button>
         <el-button
             size="small"
             type="danger"
-            @click="handleDelete(scope.$index, scope.row)"
+            @click="handle(this.goodsData, 2)"
+            v-show="goodsData.status == 0"
         >拒绝</el-button>
+        <el-button
+            size="small"
+            type="danger"
+            @click="handle(this.goodsData, 3)"
+            v-show="goodsData.status == 1"
+        >下架</el-button>
+        <el-button
+            size="small"
+            type="info"
+            @click="handle(this.goodsData, 0)"
+            v-show="goodsData.status != 0"
+        >待审</el-button>
     </div>
 </base-layout>
 </template>
 
 <script>
+import api from 'api';
 export default {
     computed: {
         imgs() {
             return this.goodsData.imgs || [];
         }
+    },
+    methods: {
+        handle(item, status) {
+            api.put(`/api/v1/goods/${item._id}`, {
+                status: status
+            })
+                .then((res) => {
+                    let response = res.data;
+                    if (response.msgCode == 100) {
+                        item.status = status;
+                        this.$message({
+                            message: response.message,
+                            type: 'success'
+                        });
+                    } else {
+                        return Promise.reject(response.message);
+                    }
+                })
+                .catch((reason) => {
+                    this.$message({
+                        message: reason,
+                        type: 'error'
+                    });
+                });
+        }
+    },
+    mounted() {
+        console.log(this.goodsData);
     }
 }
 </script>

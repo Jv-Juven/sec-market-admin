@@ -97,3 +97,12 @@ exports.postLogin = async function(ctx) {
         }
     }
 }
+
+exports.logout = async function (ctx) {
+    ctx.session = null;
+    ctx.body = {
+        msgCode: 100,
+        message: '登出成功',
+        result: null
+    }
+}

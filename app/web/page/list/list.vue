@@ -1,6 +1,17 @@
 <template lang="html">
 <base-layout title="管理列表">
-{{userName}}
+    <div class="bar-container">
+        <el-row>
+            <el-col :span="21">
+                <h5>
+                    物品列表
+                </h5>
+            </el-col>
+            <el-col :span="3">
+                <h5>您好，<el-button type="text">{{userName}}</el-button> <el-button type="info" @click="logout">登出</el-button></h5>
+            </el-col>
+        </el-row>
+    </div>
     <el-table
         :data="goodsList"
         border
@@ -57,20 +68,38 @@
             width="100">
             <template scope="scope">
                 <label v-if="scope.row.status == 0">待审核</label>
+                <label v-if="scope.row.status == 1">已通过</label>
+                <label v-if="scope.row.status == 2">已拒绝</label>
+                <label v-if="scope.row.status == 3">已下架</label>
             </template>
         </el-table-column>
         <el-table-column label="操作">
             <template scope="scope">
                 <el-button
+                    class="first-btn"
                     size="small"
                     type="success"
-                    @click="handleEdit(scope.$index, scope.row)"
+                    @click="handle(scope.$index, scope.row, 1)"
+                    v-show="scope.row.status != 1"
                 >通过</el-button>
                 <el-button
                     size="small"
                     type="danger"
-                    @click="handleDelete(scope.$index, scope.row)"
+                    @click="handle(scope.$index, scope.row, 2)"
+                    v-show="scope.row.status == 0"
                 >拒绝</el-button>
+                <el-button
+                    size="small"
+                    type="danger"
+                    @click="handle(scope.$index, scope.row, 3)"
+                    v-show="scope.row.status == 1"
+                >下架</el-button>
+                <el-button
+                    size="small"
+                    type="info"
+                    @click="handle(scope.$index, scope.row, 0)"
+                    v-show="scope.row.status != 0"
+                >待审</el-button>
             </template>
         </el-table-column>
     </el-table>
@@ -78,6 +107,7 @@
 </template>
 
 <script>
+import api from 'api';
 export default {
     data() {
         return {
@@ -117,6 +147,52 @@ export default {
     methods: {
         jumpUrl(id) {
             window.location.href = "/goodDetails/" + id;
+        },
+        handle(index, item, status) {
+            api.put(`/api/v1/goods/${item._id}`, {
+                status: status
+            })
+                .then((res) => {
+                    let response = res.data;
+                    if (response.msgCode == 100) {
+                        item.status = status;
+                        this.$message({
+                            message: response.message,
+                            type: 'success'
+                        });
+                    } else {
+                        return Promise.reject(response.message);
+                    }
+                })
+                .catch((reason) => {
+                    this.$message({
+                        message: reason,
+                        type: 'error'
+                    });
+                });
+        },
+        logout() {
+            api.get('/logout')
+                .then((res) => {
+                    let response = res.data;
+                    if (response.msgCode == 100) {
+                        this.$message({
+                            message: response.message,
+                            type: 'success',
+                            onClose() {
+                                window.location.href = "/";
+                            }
+                        });
+                    } else {
+                        return Promise.reject(response.message);
+                    }
+                })
+                .catch((reason) => {
+                    this.$message({
+                        message: reason,
+                        type: 'error'
+                    });
+                });
         }
     },
     computed: {}
