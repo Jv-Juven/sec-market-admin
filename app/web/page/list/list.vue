@@ -8,7 +8,7 @@
                 </h5>
             </el-col>
             <el-col :span="3">
-                <h5>您好，<el-button type="text">{{userName}}</el-button></h5>
+                <h5>您好，<el-button type="text">{{userName}}</el-button> <el-button type="info" @click="logout">登出</el-button></h5>
             </el-col>
         </el-row>
     </div>
@@ -159,6 +159,29 @@ export default {
                         this.$message({
                             message: response.message,
                             type: 'success'
+                        });
+                    } else {
+                        return Promise.reject(response.message);
+                    }
+                })
+                .catch((reason) => {
+                    this.$message({
+                        message: reason,
+                        type: 'error'
+                    });
+                });
+        },
+        logout() {
+            api.get('/logout')
+                .then((res) => {
+                    let response = res.data;
+                    if (response.msgCode == 100) {
+                        this.$message({
+                            message: response.message,
+                            type: 'success',
+                            onClose() {
+                                window.location.href = "/";
+                            }
                         });
                     } else {
                         return Promise.reject(response.message);
