@@ -16,5 +16,7 @@ module.exports = app => {
     app.get('/goodDetails/:id', app.middlewares.auth(), app.controller.goodDetails.goodDetails.index);
     app.post('/app/api/issue/index', app.controller.frontEnd.issue.index);
     app.resources('goods', '/api/v1/goods', app.controller.v1.goods.index);
-    app.get('/logout', app.controller.login.login.logout)
+    app.get('/logout', app.controller.login.login.logout);
+    app.get('/putInfo', app.controller.putInfo.putInfo.getPage);
+    app.post('/postInfo', app.controller.putInfo.putInfo.postInfo);
 };

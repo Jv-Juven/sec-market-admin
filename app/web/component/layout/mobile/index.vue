@@ -1,7 +1,7 @@
 
 <script>
 export default {
-  name: 'BaseLayout',
+  name: 'MobileLayout',
   props: [ 'title', 'description', 'keywords' ],
   components: {},
   computed: {
@@ -30,7 +30,7 @@ export default {
                     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
                   </head>
                   <body :class="baseClass">
-                  <div id="app" class="baseLayoutClass">
+                  <div id="app" class="bodyClass">
                    <slot></slot>
                   </div>
                   </body>
@@ -41,9 +41,9 @@ export default {
 </script>
 
 <style lang="less">
-.baseLayoutClass {
-    min-width: 780px;
-    max-width: 1000px;
+.bodyClass {
+    min-width: 320px;
+    max-width: 400px;
     margin: auto;
 }
 </style>
