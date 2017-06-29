@@ -1,6 +1,8 @@
 import axios from 'axios';
+import interceptors from './interceptors';
 import Qs from 'qs';
-export default axios.create({
+
+let api = axios.create({
     //`url`是请求的服务器地址
     // url: '/user',
     //`method`是请求资源的方式
@@ -108,3 +110,7 @@ export default axios.create({
     //
     // })
 });
+
+interceptors(api);
+
+export default api;
