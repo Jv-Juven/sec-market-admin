@@ -11,7 +11,8 @@
         "start-prod": "WORKERS=1 && NODE_ENV=production node index.js",
         "restart": "npm run kill-port && npm run start",
         "lint": "eslint .",
-        "fix": "eslint --fix ."
+        "fix": "eslint --fix .",
+        "release": "EGG_SERVER_ENV=prod PORT=7003 nohup node index.js > stdout.log 2> stderr.log &"
     },
     "dependencies": {
         "@hubcarl/egg-view-vue": "^0.0.2",
