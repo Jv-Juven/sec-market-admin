@@ -102,6 +102,12 @@
             </template>
         </el-table-column>
     </el-table>
+    <div class="operations-wrapper">
+        <el-button @click="batchOpt()" type="success">通过</el-button>
+        <el-button @click="batchOpt()" type="danger">拒绝</el-button>
+        <el-button @click="batchOpt()" type="danger">下架</el-button>
+        <el-button @click="batchOpt()" type="info">待审</el-button>
+    </div>
 </base-layout>
 </template>
 
@@ -192,7 +198,9 @@ export default {
                         type: 'error'
                     });
                 });
-        }
+        },
+        // 批量操作
+        batchOpt () {}
     },
     computed: {}
 }

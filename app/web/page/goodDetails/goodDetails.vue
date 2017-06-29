@@ -54,28 +54,28 @@
         </p>
         <div class="operations-wrapper">
             <el-button
-            size="small"
-            type="success"
-            @click="handle(goodsData, 1)"
-            v-show="goodsData.status != 1"
+                size="small"
+                type="success"
+                @click="handle(goodsData, 1)"
+                v-show="goodsData.status != 1"
             >通过</el-button>
             <el-button
-            size="small"
-            type="danger"
-            @click="handle(goodsData, 2)"
-            v-show="goodsData.status == 0"
+                size="small"
+                type="danger"
+                @click="handle(goodsData, 2)"
+                v-show="goodsData.status == 0"
             >拒绝</el-button>
             <el-button
-            size="small"
-            type="danger"
-            @click="handle(goodsData, 3)"
-            v-show="goodsData.status == 1"
+                size="small"
+                type="danger"
+                @click="handle(goodsData, 3)"
+                v-show="goodsData.status == 1"
             >下架</el-button>
             <el-button
-            size="small"
-            type="info"
-            @click="handle(goodsData, 0)"
-            v-show="goodsData.status != 0"
+                size="small"
+                type="info"
+                @click="handle(goodsData, 0)"
+                v-show="goodsData.status != 0"
             >待审</el-button>
         </div>
     </div>
