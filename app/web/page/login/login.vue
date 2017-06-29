@@ -45,7 +45,17 @@ export default {
             this.title = value || '登录';
         }
     },
-    mounted() {}
+    mounted() {
+        const getCookie = function(name) {
+            var arr,
+                reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+            if (arr = document.cookie.match(reg))
+                return unescape(arr[2]);
+            else
+                return null;
+        }
+        console.log(getCookie('_csrf'));
+    }
 }
 </script>
 
