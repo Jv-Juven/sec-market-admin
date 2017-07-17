@@ -102,6 +102,13 @@
             </template>
         </el-table-column>
     </el-table>
+    <div class="list-operations-wrapper">
+        <el-button type="success">通过</el-button>
+        <!-- <el-button type="warning">警告按钮</el-button> -->
+        <el-button type="danger">拒绝</el-button>
+        <el-button type="danger">下架</el-button>
+        <el-button type="info">待审</el-button>
+    </div>
 </base-layout>
 </template>
 
@@ -147,6 +154,7 @@ export default {
         jumpUrl(id) {
             window.location.href = "/goodDetails/" + id;
         },
+        // 单项操作
         handle(index, item, status) {
             api.put(`/api/v1/goods/${item._id}`, {
                 status: status
@@ -170,6 +178,8 @@ export default {
                     });
                 });
         },
+        // 多选操作
+        multipleHandle(status) {},
         logout() {
             api.get('/logout')
                 .then((res) => {
