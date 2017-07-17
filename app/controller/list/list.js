@@ -15,11 +15,11 @@
 //     }
 // }
 
-exports.index = async function(ctx) {
-    let Good = ctx.model.Good;
+exports.index = async function (ctx) {
+    const Good = ctx.model.Good;
     // this.session.user = null;
-    let result = await Good.find({}, '_id createdAt goodsName status');
-    let user = ctx.session.user || {};
+    const result = await Good.find({}, '_id createdAt goodsName status');
+    const user = ctx.session.user || {};
     await ctx.page('list/list.js', {
         userName: user.userName || '游客',
         goodsList: result

@@ -4,11 +4,11 @@
         <el-row>
             <el-col :span="18">
                 <h5>
-                    物品列表
+                    <el-button type="text" :disabled="true">物品列表</el-button>
                 </h5>
             </el-col>
             <el-col :span="6">
-                <h5>您好，<el-button type="text">{{userName}}</el-button> <el-button type="info" @click="logout">登出</el-button></h5>
+                <h5>您好，<el-button type="text">{{userName}}</el-button> <el-button type="danger" @click="logout">登出</el-button></h5>
             </el-col>
         </el-row>
     </div>
