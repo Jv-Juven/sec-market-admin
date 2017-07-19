@@ -39,5 +39,9 @@ module.exports = app => {
         options: {}
     };
 
+    exports.qiniu = {
+        accessKey: '_FphakKEQA8oK8EhGBzgvvf11bOY_mxtBMvBq9gK',
+        secretKey: 'sX-WX-5UFwkyB5Ukzz9L5OnI15-TRurTmVjdFbMf'
+    };
     return exports;
 };
