@@ -8,6 +8,7 @@ module.exports = app => {
     app.get('/app/api/article/:id', app.controller.app.app.detail);
     app.get('/app(/.+)?', app.controller.app.app.index);
     app.get('/test', app.controller.test.test.index);
+
     app.get('/login', app.controller.login.login.index);
     app.redirect('/', '/login', 302);
     app.post('/login/api/register', app.controller.login.login.postRegister);
@@ -16,6 +17,7 @@ module.exports = app => {
     app.get('/goodDetails/:id', app.middlewares.auth(), app.controller.goodDetails.goodDetails.index);
     app.post('/app/api/issue/index', app.controller.frontEnd.issue.index);
     app.resources('goods', '/api/v1/goods', app.controller.v1.goods.index);
+    app.post('/api/v1/goods', app.controller.v1.goods.index.update);
     app.get('/logout', app.controller.login.login.logout);
     app.get('/putInfo', app.middlewares.close(), app.controller.putInfo.putInfo.getPage);
     app.post('/postInfo', app.middlewares.close(), app.controller.putInfo.putInfo.postInfo);
