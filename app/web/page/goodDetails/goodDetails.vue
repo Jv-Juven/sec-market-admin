@@ -20,7 +20,7 @@
         </ul>
         <!-- 价格 -->
         <div class="goodDetails-item">
-            <span class="goodDetails-item-title">价格：</span>{{goodsData.price}}
+            <span class="goodDetails-item-title">价格：</span><span class="orange">￥{{goodsData.price}}</span>
         </div>
         <!-- 昵称 -->
         <div class="goodDetails-item">

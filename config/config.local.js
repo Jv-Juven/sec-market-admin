@@ -33,7 +33,7 @@ module.exports = app => {
         csrf: {
             enable: true
         }
-    }
+    };
 
     return exports;
 };

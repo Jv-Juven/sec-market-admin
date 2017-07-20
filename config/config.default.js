@@ -43,5 +43,18 @@ module.exports = app => {
         accessKey: '_FphakKEQA8oK8EhGBzgvvf11bOY_mxtBMvBq9gK',
         secretKey: 'sX-WX-5UFwkyB5Ukzz9L5OnI15-TRurTmVjdFbMf'
     };
+
+    exports.security = {
+        domainWhiteList: ['http://localhost:8088'],
+        csrf: {
+            ignore: ctx => {
+                let url = ctx.request.url;
+                if (/^\/app\/api/.test(url)) {
+                    return url;
+                }
+            }
+        }
+    };
+
     return exports;
 };

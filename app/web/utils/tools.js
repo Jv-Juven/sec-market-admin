@@ -7,10 +7,11 @@ export const setCookie = function(name, value) {
 }
 // 取cookies
 export const getCookie = function(name) {
-    var arr,
-        reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+    let arr;
+    const reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
     if (arr = document.cookie.match(reg))
         return unescape(arr[2]);
-    else
+    else {
         return null;
-}
+    };
+};

@@ -264,15 +264,34 @@ export default {
         },
         // 筛选
         filterByStatus(value) {
-            if (value.length == 0) {
-                this.showData = this.goodsList;
-            } else {
-                this.showData = this.goodsList.filter((item) => {
-                    return value.some((status) => {
-                        return status == item.status; 
+            // if (value.length == 0) {
+            //     this.showData = this.goodsList;
+            // } else {
+            //     this.showData = this.goodsList.filter((item) => {
+            //         return value.some((status) => {
+            //             return status == item.status; 
+            //         });
+            //     });
+            // }
+            api.get('/list/getListData', {
+                params: {
+                    status: value.join(',')
+                }
+            })
+                .then((res) => {
+                    let response = res.data;
+                    if (response.msgCode == 100) {
+                        this.showData = response.result;
+                    } else {
+                        return Promise.reject(response.message);
+                    }
+                })
+                .catch((reason) => {
+                    this.$message({
+                        message: reason,
+                        type: 'error'
                     });
                 });
-            }
         }
     },
     computed: {}
