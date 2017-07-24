@@ -54,7 +54,7 @@ export default {
             else
                 return null;
         }
-        console.log(getCookie('_csrf'));
+        // console.log(getCookie('_csrf'));
     }
 }
 </script>
