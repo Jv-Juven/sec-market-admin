@@ -5,9 +5,9 @@ module.exports = app => {
             await ctx.page('putInfo/putInfo.js');
         }
         async postInfo (ctx) {
-            let { name, department, sex, idNo } = ctx.request.body;
+            const { name, department, sex, idNo } = ctx.request.body;
             // 验证
-            let validator = ctx.validator();
+            const validator = ctx.validator();
             validator.emit(name, 'min:1|max:20', '姓名应为1到20个字符');
             validator.emit(sex, 'min:1', '请选择性别');
             // validator.emit(department, 'min:1', '请选择部门');
@@ -17,22 +17,22 @@ module.exports = app => {
                     msgCode: 610,
                     message: validator.validedMsgs[0],
                     result: null
-                }
+                };
                 return;
             }
             // 查找重复
             const Info = ctx.model.Info;
-            let exist = await Info.find({ idNo: idNo });
-            if (!!exist[0]) {
+            const exist = await Info.find({ idNo });
+            if (exist[0]) {
                 ctx.body = {
                     msgCode: 601,
                     message: '已存在此姓名信息',
                     result: null
-                }
+                };
                 return;
             }
             // 插入信息
-            let result = await Info.create({
+            const result = await Info.create({
                 name,
                 department,
                 sex,
@@ -41,8 +41,8 @@ module.exports = app => {
             ctx.body = {
                 msgCode: 100,
                 message: '提交成功',
-                result: null
+                result
             };
         }
-    }
-}
+    };
+};

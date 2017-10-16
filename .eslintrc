@@ -1,32 +1,42 @@
+// 配置请参考  http://www.cnblogs.com/allin123/p/5754500.html
 {
-  "extends": "eslint-config-egg",
-  "parser": "babel-eslint",
-  "parserOptions": {
-    "ecmaVersion": 6,
-    "sourceType": "module"
-  },
-  "rules": {
-    "array-bracket-spacing": "off",
-    "eol-last": "off",
-    "comma-dangle": [
-      "error",
-      "never"
-    ],
-    "no-unused-vars": [
-      "error",
-      {
-        "vars": "all",
-        "args": "none"
-      }
-    ]
-  },
-  "env": {
-    "browser": true,
-    "node": true,
-    "commonjs": true,
-    "es6": true
-  },
-  "plugins": [
-    "vue"
-  ]
+	"extends": "eslint-config-egg",
+	"parser": "babel-eslint",
+	"parserOptions": {
+		"ecmaVersion": 6,
+		"sourceType": "module"
+	},
+	"rules": {
+		"array-bracket-spacing": "off",
+		"eol-last": "off",
+		"comma-dangle": [
+			"error",
+			"never"
+		],
+		"no-unused-vars": [
+			"error",
+			{
+				"vars": "all",
+				"args": "none"
+			}
+		],
+		"indent": [
+			2,
+			4,
+			{
+				"SwitchCase": 1
+			}
+		],
+		//函数定义时，function关键字后面的小括号前是否需要加空格
+        "space-before-function-paren": [2, "always"]
+	},
+	"env": {
+		"browser": true,
+		"node": true,
+		"commonjs": true,
+		"es6": true
+	},
+	"plugins": [
+		"vue"
+	]
 }

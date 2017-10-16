@@ -1,4 +1,4 @@
-var path = require('path');
+const path = require('path');
 exports.static = true;
 
 exports.vue = {
@@ -34,7 +34,12 @@ exports.mongoose = {
 exports.validator = {
     enable: true,
     path: path.join(__dirname, '../lib/plugin/egg-validator')
-}
+};
+
+exports.cors = {
+    enable: true,
+    package: 'egg-cors'
+};
 
 // exports.proxyworker = {
 //     enable: true,
